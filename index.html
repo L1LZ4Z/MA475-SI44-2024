@@ -7,7 +7,6 @@
     <title>Bootstrap Starter Page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js"></script>
   </head>
 <body>
 <!--Header y Nav-->
@@ -25,7 +24,7 @@
                 </button>
                 <!-- Botón que se ve en la versión móvil -->
 
-                <a class="navbar-brand" href="#">IMAGE DISRUPTO</a> <!--Marca-->
+                <a class="navbar-brand" href="index.html">IMAGE DISRUPTO</a> <!--Marca-->
               </div>
           
               <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,9 +39,39 @@
     </header>
 <!--Header y Nav-->
 
-  <h1 class="text-center">Hello Coursera!</h1>
+  <h1 class="text-center">Ecualización y Expansión de Histogramas</h1>
 
-
+<div id ="main-content" class="container-fluid">
+  <div class="row">
+    <!--CANVAS PROCESADO-->
+    <div id="canvas-container" class="col-md-8 col-sm-12 col-xs-12"> 
+      <canvas id="canvas-procesado" class="col-md-12 col-sm-12 col-xs-12"></canvas>
+    </div> 
+    <!--CANVAS PROCESADO-->
+    <!--MENU-->
+    <div id="menu" class="col-md-4 col-sm-12 col-xs-12">
+      <div id="menu-header">
+        <h2 class="text-center">Lista de opciones</h2>
+      </div>
+      <div id="menu-body"> 
+        <div id="image-select">
+          <input type="file" id="file-input" accept="image/*">
+          <canvas id="canvas-original" class="col-md-12 col-sm-12 col-xs-12"></canvas>
+        </div>
+        <div id="menu-options">
+          <button onclick="aplicarEcualizacionHistograma()" class="btn btn-primary col-md-8">Ecualización</button>
+          <button onclick="aplicarExpansionHistograma()" class="btn btn-primary col-md-8">Expansión</button>
+        </div>
+      </div> 
+    </div> 
+    <!--MENU-->
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      
+    </div>
+  </div>
+</div>
 
 
 

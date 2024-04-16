@@ -1,0 +1,24 @@
+#canvas-original, #canvas-procesado, #menu {
+  border: 1px solid black;
+}
+
+/********** Medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+  #canvas-original, #canvas-procesado {
+    height: calc(max-width * 16%);
+    border: 1px solid black;
+  }
+  #menu {
+    border: 1px solid black;
+  }
+}
+
+/********** Small devices only **********/
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/********** Extra small devices only **********/
+@media (max-width: 767px) {
+  
+}
