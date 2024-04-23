@@ -24,7 +24,7 @@
                 </button>
                 <!-- Botón que se ve en la versión móvil -->
 
-                <a class="navbar-brand" href="index.html">IMAGE DISRUPTO</a> <!--Marca-->
+                <a class="navbar-brand" href="index.html">Pixel Balancer</a> <!--Marca-->
               </div>
           
               <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,39 +39,35 @@
     </header>
 <!--Header y Nav-->
 
-  <h1 class="text-center">Ecualización y Expansión de Histogramas</h1>
+  <h1 class="text-center">Ecualización y Expansión de histogramas</h1>
 
 <div id ="main-content" class="container-fluid">
   <div class="row">
     <!--CANVAS PROCESADO-->
     <div id="canvas-container" class="col-md-8 col-sm-12 col-xs-12"> 
+      <div id="canvas-header">
+        <h2 class="text-center">Imagen procesada</h2>
+      </div>
       <canvas id="canvas-procesado" class="col-md-12 col-sm-12 col-xs-12"></canvas>
     </div> 
     <!--CANVAS PROCESADO-->
     <!--MENU-->
     <div id="menu" class="col-md-4 col-sm-12 col-xs-12">
       <div id="menu-header">
-        <h2 class="text-center">Lista de opciones</h2>
+        <h2 class="text-center">Imagen original</h2>
       </div>
       <div id="menu-body"> 
-        <div id="image-select">
-          <input type="file" id="file-input" accept="image/*">
+        <div id="image-select"> 
           <canvas id="canvas-original" class="col-md-12 col-sm-12 col-xs-12"></canvas>
+          <input type="file" id="file-input" accept="image/*">
         </div>
         <div id="menu-options">
-          <button onclick="aplicarEcualizacionHistograma()" class="btn btn-primary col-md-8">Ecualización</button>
-          <button onclick="aplicarExpansionHistograma()" class="btn btn-primary col-md-8">Expansión</button>
+          <button onclick="aplicarEcualizacionHistograma()" class="btn btn-primary col-md-12 col-sm-6 col-xs-6">Ecualizar</button>
+          <button onclick="aplicarExpansionHistograma()" class="btn btn-primary col-md-12 col-sm-6 col-xs-6">Expandir</button>
         </div>
       </div> 
     </div> 
     <!--MENU-->
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      
-    </div>
-  </div>
-</div>
 
 
 
