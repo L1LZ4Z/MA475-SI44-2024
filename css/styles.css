@@ -1,26 +1,37 @@
-#menu, #canvas-container {
-  border: 1px solid black;
+h1, h2, #blanco1, #blanco2, #blanco3 {
+  color: #ffffff;
 }
 #canvas-container {
   padding-bottom: 15px;
   margin-bottom: 15px;
+}
+canvas {
+  border: 1px solid whitesmoke;
 }
 #canvas-original {
   margin-bottom: 15px;
 }
 #file-input {
   margin-bottom: 15px;
-  
 }
 .btn {
+  background-color: #BAD61A;
   margin-bottom: 15px;
   height: 50px;
+  color: black;
+  font-weight: bolder;
+  border: 1px solid #BAD61A;
 }
 h1, h2 {
   margin-bottom: 20px;
 }
-canvas {
-  border: 1px solid black;
+nav.navbar.navbar-default {
+  background-color: #231A39;
+  border-color: transparent;
+  color: #ffffff;
+}
+body {
+  background-color: #392D57;
 }
 /********** Medium devices only **********/
 @media (min-width: 992px) and (max-width: 1199px) {
