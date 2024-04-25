@@ -80,6 +80,16 @@ function ecualizacionHistograma(datosImagen) {
     return datosImagen;
 }
 
+function obtenerValoresHistograma(datosImagen) {
+    var píxeles = datosImagen.data;
+    var histograma = new Array(256).fill(0);
+    var cantidad_píxeles = píxeles.length/ 4;
+    for (var i = 0; i < píxeles.length; i += 4) {
+        var intensidad = (píxeles[i]);
+        histograma[Math.floor(intensidad)]++;
+    }
+    return histograma;
+}
 
 function aplicarExpansionHistograma() {
     var canvasOriginal = document.getElementById('canvas-original');
@@ -90,12 +100,13 @@ function aplicarExpansionHistograma() {
     var imagen = new Image();
     imagen.onload = function() {
         var datosImagenOriginal = contextoOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
-        var datosImagenExpandida = expansionHistograma(datosImagenOriginal);
+        var datosImagenExpandida = expansionHistograma(datosImagenOriginal);  
+        var array_histograma = obtenerValoresHistograma(datosImagenExpandida); 
+        generarGraficoHistogramaFinal(array_histograma); 
         contextoProcesado.putImageData(datosImagenExpandida, 0, 0);
     };
     imagen.src = imageVariable;
 }
-
 
 function aplicarEcualizacionHistograma() {
     var canvasOriginal = document.getElementById('canvas-original');
@@ -107,11 +118,86 @@ function aplicarEcualizacionHistograma() {
     imagen.onload = function() {
         var datosImagenOriginal = contextoOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
         var datosImagenExpandida = ecualizacionHistograma(datosImagenOriginal);
+        var array_histograma = obtenerValoresHistograma(datosImagenExpandida);
+        generarGraficoHistogramaFinal(array_histograma); 
         contextoProcesado.putImageData(datosImagenExpandida, 0, 0);
     };
     imagen.src = imageVariable;
 }
 
+function generarGraficoHistogramaFinal(array_histograma) {
+    var canvas = document.getElementById('histograma');
+    var ctx = canvas.getContext('2d');
 
+    // Destruir la instancia existente si existe
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
 
+    window.myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Array.from({ length: 256 }, (_, i) => i.toString()),
+            datasets: [{
+                label: 'Histograma',
+                data: array_histograma,
+                backgroundColor: '#BAD61A',
+                borderColor: '#BAD61A',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
 
+//Idea a futuro: mostrar el histograma original
+/*
+var array_bnw = obtenerValoresHistogramaBNW(datosImagenOriginal);
+generarGraficoHistogramaOriginal(array_bnw);
+function obtenerValoresHistogramaBNW(datosImagen) {
+    var píxeles = datosImagen.data;
+    var histograma = new Array(256).fill(0);
+    var cantidad_píxeles = píxeles.length/ 4;
+    for (var i = 0; i < píxeles.length; i += 4) {
+        var intensidad = (píxeles[i] + píxeles[i + 1] + píxeles[i + 2]) / 3;
+        histograma[Math.floor(intensidad)]++;
+    }
+    return histograma;
+}
+function generarGraficoHistogramaOriginal(array_bnw) {
+    var canvas = document.getElementById('histograma-original');
+    var ctx = canvas.getContext('2d');
+
+    // Destruir la instancia existente si existe
+    if (window.myChart2) {
+        window.myChart2.destroy();
+    }
+
+    window.myChart2 = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Array.from({ length: 256 }, (_, i) => i.toString()),
+            datasets: [{
+                label: 'Histograma',
+                data: array_bnw,
+                backgroundColor: '#BAD61A',
+                borderColor: '#BAD61A',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+*/

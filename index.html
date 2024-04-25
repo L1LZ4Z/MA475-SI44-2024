@@ -41,6 +41,7 @@
   <h1 class="text-center">Ecualización y Expansión de histogramas</h1>
 
 <div id ="main-content" class="container-fluid">
+  <!--ROW1-->
   <div class="row">
     <!--CANVAS PROCESADO-->
     <div id="canvas-container" class="col-md-8 col-sm-12 col-xs-12"> 
@@ -67,6 +68,27 @@
       </div> 
     </div> 
     <!--MENU-->
+  </div>
+  <!--ROW1-->
+  <!--ROW2-->
+  <div class="row">
+    <div id="histograma-container" class="col-md-8 col-sm-12 col-xs-12">
+      <div id="histograma-header">
+        <h2 class="text-center">Histograma resultante</h2>
+      </div>
+      <canvas id="histograma" class="col-md-12 col-sm-12 col-xs-12"></canvas>
+    </div>
+  <!-- IDEA A FUTURO
+    <div id="histograma-original-container" class="col-md-4 col-sm-12 col-xs-12">
+      <div id="histograma-original-header">
+        <h2 class="text-center">Histograma original</h2>
+      </div>
+      <canvas id="histograma-original" class="col-md-12 col-sm-12 col-xs-12"></canvas>
+    </div>
+  </div>
+  -->
+  <!--ROW2-->
+</div>
 
 
 
@@ -74,5 +96,6 @@
   <script src="js/jquery-1.11.3.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

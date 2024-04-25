@@ -1,9 +1,12 @@
 h1, h2, #blanco1, #blanco2, #blanco3 {
   color: #ffffff;
 }
-#canvas-container {
+#canvas-container, #histograma-container {
   padding-bottom: 15px;
   margin-bottom: 15px;
+}
+#histograma, #histograma-original {
+  background-color: #ffffffde;
 }
 canvas {
   border: 1px solid whitesmoke;
@@ -48,4 +51,8 @@ body {
 /********** Extra small devices only **********/
 @media (max-width: 767px) {
 
+}
+input[type="file"] {
+  color: transparent;
+  width: 139px;
 }
