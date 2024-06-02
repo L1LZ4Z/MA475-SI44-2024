@@ -45,11 +45,11 @@ function expansionHistograma(datosImagen) {
         if (intensidad > máximo) máximo = intensidad;
     }
 
-    var pendiente = 255 / (máximo - mínimo);        //m
-    var independiente = 255 - (pendiente * máximo); //b
+    var m = 255 / (máximo - mínimo);        //m
+    var b = 255 - (m * máximo); //b
     for (var i = 0; i < píxeles.length; i += 4) {
         var intensidad = (píxeles[i] + píxeles[i + 1] + píxeles[i + 2]) / 3;
-        intensidad = (pendiente * intensidad) + independiente;
+        intensidad = (m * intensidad) + b;
         píxeles[i] = píxeles[i + 1] = píxeles[i + 2] = intensidad;
     }
 
@@ -79,11 +79,18 @@ function ecualizacionHistograma(datosImagen) {
 
     return datosImagen;
 }
+/*ESTOY PROBANDO*/
+function devolerArregloBNW(datosImagen) {
+    var píxeles = datosImagen.data;
+    for (var i = 0; i < píxeles.length; i += 4) {
+        var intensidad = (píxeles[i] + píxeles[i + 1] + píxeles[i + 2]) / 3;
+    }
+    return datosImagen;
+}
 
 function obtenerValoresHistograma(datosImagen) {
     var píxeles = datosImagen.data;
     var histograma = new Array(256).fill(0);
-    var cantidad_píxeles = píxeles.length/ 4;
     for (var i = 0; i < píxeles.length; i += 4) {
         var intensidad = (píxeles[i]);
         histograma[Math.floor(intensidad)]++;
@@ -100,6 +107,9 @@ function aplicarExpansionHistograma() {
     var imagen = new Image();
     imagen.onload = function() {
         var datosImagenOriginal = contextoOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
+        var DatosImagenBNW = devolerArregloBNW(datosImagenOriginal);
+        var array_bnw = obtenerValoresHistograma(DatosImagenBNW);
+        generarGraficoHistogramaOriginal(array_bnw);
         var datosImagenExpandida = expansionHistograma(datosImagenOriginal);  
         var array_histograma = obtenerValoresHistograma(datosImagenExpandida); 
         generarGraficoHistogramaFinal(array_histograma); 
@@ -117,6 +127,9 @@ function aplicarEcualizacionHistograma() {
     var imagen = new Image();
     imagen.onload = function() {
         var datosImagenOriginal = contextoOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
+        var DatosImagenBNW = devolerArregloBNW(datosImagenOriginal);
+        var array_bnw = obtenerValoresHistograma(DatosImagenBNW);
+        generarGraficoHistogramaOriginal(array_bnw);
         var datosImagenExpandida = ecualizacionHistograma(datosImagenOriginal);
         var array_histograma = obtenerValoresHistograma(datosImagenExpandida);
         generarGraficoHistogramaFinal(array_histograma); 
@@ -156,10 +169,9 @@ function generarGraficoHistogramaFinal(array_histograma) {
     });
 }
 
-//Idea a futuro: mostrar el histograma original
-/*
+
 var array_bnw = obtenerValoresHistogramaBNW(datosImagenOriginal);
-generarGraficoHistogramaOriginal(array_bnw);
+
 function obtenerValoresHistogramaBNW(datosImagen) {
     var píxeles = datosImagen.data;
     var histograma = new Array(256).fill(0);
@@ -200,4 +212,3 @@ function generarGraficoHistogramaOriginal(array_bnw) {
         }
     });
 }
-*/
